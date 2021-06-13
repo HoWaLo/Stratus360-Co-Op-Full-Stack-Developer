@@ -28,12 +28,12 @@ function setBtn(id) {
 }
 
 // counting visitor function
-function count(id) {
+function count(id, onOff) {
   // get counting from localStorage of the comic page
   let n = localStorage.getItem(id);
 
   if (n === null) n = 0; // if no result, set n to 0
-  n++;
+  if (onOff) n++; // if comic load successfully
   localStorage.setItem(id, n); // save the visitor counting to the localStorage
 
   document.querySelector("#counter").innerHTML =
@@ -46,6 +46,7 @@ function count(id) {
 window.onload = async () => {
   // find the page number, by the url of the page
   let comicID = parseInt(window.location.pathname.match(/(\d+)/)[0]);
+  let successCheck = false;
   setBtn(comicID); // call set button function
 
   // try GET data
@@ -85,11 +86,12 @@ window.onload = async () => {
     document.querySelector(`#comic-date`).innerHTML = // comic created date (month/day/year)
       monthNames[parseInt(data.month) - 1] + "/" + data.day + "/" + data.year; // parseInt(data.month) - 1 = change number to word
 
-    count(comicID); // count the visitor if comic load successfully
+    successCheck = true;
   } catch (error) {
     console.error(error);
     alert(`Error! Comic loading failed!`);
   }
 
+  count(comicID, successCheck); // count the visitor if comic load successfully
   document.querySelector(".loading-container").classList.remove("loading"); // remove loading status
 };
