@@ -1,0 +1,29 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f6f8;
+}
+
+/* loading icon */
+.loading-spinner {
+  width: 7rem;
+  height: 7rem;
+  display: none;
+}
+
+/* card size */
+.profile-card {
+  min-width: 35vh;
+  min-height: 50vh;
+}
+
+/* loading functionality */
+.loading .loading-spinner {
+  display: inline-block;
+}
+
+/* hide content when loading */
+.loading .comicCon {
+  display: none;
+}
