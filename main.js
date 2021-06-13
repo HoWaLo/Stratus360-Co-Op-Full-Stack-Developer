@@ -85,7 +85,7 @@ window.onload = async () => {
     document.querySelector(`#comic-date`).innerHTML = // comic created date (month/day/year)
       monthNames[parseInt(data.month) - 1] + "/" + data.day + "/" + data.year; // parseInt(data.month) - 1 = change number to word
 
-    count(comicID); // call count visitor function
+    count(comicID); // count the visitor if comic load successfully
   } catch (error) {
     console.error(error);
     alert(`Error! Comic loading failed!`);
