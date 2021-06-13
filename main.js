@@ -47,7 +47,6 @@ window.onload = async () => {
   // find the page number, by the url of the page
   let comicID = parseInt(window.location.pathname.match(/(\d+)/)[0]);
   setBtn(comicID); // call set button function
-  count(comicID); // call count visitor function
 
   // try GET data
   try {
@@ -86,9 +85,11 @@ window.onload = async () => {
     document.querySelector(`#comic-date`).innerHTML = // comic created date (month/day/year)
       monthNames[parseInt(data.month) - 1] + "/" + data.day + "/" + data.year; // parseInt(data.month) - 1 = change number to word
 
-    document.querySelector(".loading-container").classList.remove("loading"); // remove loading status
+    count(comicID); // call count visitor function
   } catch (error) {
     console.error(error);
     alert(`Error! Comic loading failed!`);
   }
+
+  document.querySelector(".loading-container").classList.remove("loading"); // remove loading status
 };
