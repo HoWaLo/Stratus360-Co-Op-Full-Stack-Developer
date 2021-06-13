@@ -10,9 +10,9 @@ function setNextBtn(id) {
   // if next page is out of page, then link is nothing, else link is next page
   btnNext.href = id + 1 > maxPage ? "#" : `/${id + 1}/page`;
 }
-function setPervBtn(id) {
-  let btnPrev = document.querySelector(`#pervious`);
-  // if pervious page is out of page, then link is nothing, else link is pervious page
+function setPrevBtn(id) {
+  let btnPrev = document.querySelector(`#previous`);
+  // if previous page is out of page, then link is nothing, else link is previous page
   btnPrev.href = id - 1 < 1 ? "#" : `/${id - 1}/page`;
 }
 function setRandomBtn(max) {
@@ -23,7 +23,7 @@ function setRandomBtn(max) {
 }
 function setBtn(id) {
   setNextBtn(id);
-  setPervBtn(id);
+  setPrevBtn(id);
   setRandomBtn(maxPage);
 }
 
