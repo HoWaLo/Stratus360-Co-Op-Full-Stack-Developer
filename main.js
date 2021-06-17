@@ -90,6 +90,5 @@ window.onload = async () => {
     alert(`Error! Comic loading failed!`);
   }
 
-  count(comicID, successCheck); // count the visitor if comic load successfully
   document.querySelector(".loading-container").classList.remove("loading"); // remove loading status
 };
