@@ -24,6 +24,28 @@ function setBtn(id) {
   setRandomBtn(maxPage);
 }
 
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "/count.json");
+
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4) {
+    console.log(xhr.status);
+    console.log(xhr.responseText);
+  }
+};
+
+var data = `{
+  "Id": 78912,
+  "Customer": "Jason Sweet",
+  "Quantity": 1,
+  "Price": 18.00
+}`;
+
+xhr.send(data);
+
 // window load function
 window.onload = async () => {
   // find the page number, by the url of the page
