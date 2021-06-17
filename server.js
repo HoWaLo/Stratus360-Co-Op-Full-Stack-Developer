@@ -19,6 +19,12 @@ app.get(`/`, function (req, res) {
   res.sendFile(path.join(__dirname, "/comicMain.html"));
 });
 
+// insert the comic
+app.get(`/info.0.json`, function (req, res) {
+  // insert html page
+  res.sendFile(path.join(__dirname, "/json/info.0.json"));
+});
+
 // function of insert the whole comic
 function createWeb(max) {
   for (let i = 1; i <= max; i++) {
@@ -27,6 +33,12 @@ function createWeb(max) {
       // insert html page
       res.sendFile(path.join(__dirname, "/comicMain.html"));
     });
+
+    // The code for whole comic pages
+    // app.get(`/${i}/info.0.json`, function (req, res) {
+    //   // insert html page
+    //   res.sendFile(path.join(__dirname, `/json/info.${i}.json`));
+    // });
   }
 }
 createWeb(maxPage); // create webpage for comic
