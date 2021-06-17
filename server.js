@@ -25,11 +25,6 @@ app.get(`/info.0.json`, function (req, res) {
   res.sendFile(path.join(__dirname, "/json/info.0.json"));
 });
 
-app.get(`/count.json`, function (req, res) {
-  // insert html page
-  res.sendFile(path.join(__dirname, "/json/count.json"));
-});
-
 // function of insert the whole comic
 function createWeb(max) {
   for (let i = 1; i <= max; i++) {
