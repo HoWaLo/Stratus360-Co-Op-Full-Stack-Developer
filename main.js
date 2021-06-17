@@ -24,21 +24,6 @@ function setBtn(id) {
   setRandomBtn(maxPage);
 }
 
-// counting visitor function
-function count(id, onOff) {
-  // get counting from localStorage of the comic page
-  let n = localStorage.getItem(id);
-
-  if (n === null) n = 0; // if no result, set n to 0
-  if (onOff) n++; // if comic load successfully
-  localStorage.setItem(id, n); // save the visitor counting to the localStorage
-
-  document.querySelector("#counter").innerHTML =
-    n <= 1
-      ? `The strip has been viewed ${n} time.`
-      : `The strip has been viewed ${n} times.`;
-}
-
 // window load function
 window.onload = async () => {
   // find the page number, by the url of the page
