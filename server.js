@@ -57,7 +57,7 @@ getJson(1); // Call function of comic json
 function createWeb(max) {
   for (let i = 1; i <= max; i++) {
     // loop from 1 to the maximum page of the comic
-
+    getJson(i);
     app.get(`/${i}/page`, function (req, res) {
       // insert html page
       res.sendFile(path.join(__dirname, "/comicMain.html"));
