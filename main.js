@@ -40,6 +40,7 @@ window.onload = async () => {
     // request to GET comic data
 
     // code if has multiple comic pages from document
+
     let res =
       comicID === 0
         ? await fetch(`/info.0.json`)

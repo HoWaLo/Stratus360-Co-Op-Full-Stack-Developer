@@ -3,6 +3,7 @@ var request = require("request");
 
 var app = express();
 var path = require("path");
+const { Console } = require("console");
 
 var HTTP_PORT = process.env.PORT || 8080; // create PORT environment
 
@@ -41,18 +42,21 @@ function getJson(index) {
     },
     (err, res, body) => {
       app.get(`/${index}/info.0.json`, function (req, res) {
+        if (index <= maxPage) {
+          console.log(index);
+          getJson(index + 1);
+        }
         res.send(body);
       });
     }
   );
 }
+getJson(1); // Call function of comic json
 
 // function of insert the whole comic
 function createWeb(max) {
   for (let i = 1; i <= max; i++) {
     // loop from 1 to the maximum page of the comic
-
-    getJson(i); // Call function of comic json
 
     app.get(`/${i}/page`, function (req, res) {
       // insert html page
