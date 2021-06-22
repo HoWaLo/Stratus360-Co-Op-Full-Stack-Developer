@@ -1,4 +1,6 @@
 var express = require("express");
+var request = require("request");
+
 var app = express();
 var path = require("path");
 
@@ -18,27 +20,44 @@ app.get(`/main.css`, function (req, res) {
 app.get(`/`, function (req, res) {
   res.sendFile(path.join(__dirname, "/comicMain.html"));
 });
+request(
+  {
+    url: `https://xkcd.com/info.0.json`,
+    json: true,
+  },
+  (err, res, body) => {
+    app.get(`/info.0.json`, function (req, res) {
+      res.send(body);
+    });
+  }
+);
 
-// insert the comic
-app.get(`/info.0.json`, function (req, res) {
-  // insert html page
-  res.sendFile(path.join(__dirname, "/json/info.0.json"));
-});
+// function for send comic json
+function getJson(index) {
+  request(
+    {
+      url: `https://xkcd.com/${index}/info.0.json`,
+      json: true,
+    },
+    (err, res, body) => {
+      app.get(`/${index}/info.0.json`, function (req, res) {
+        res.send(body);
+      });
+    }
+  );
+}
 
 // function of insert the whole comic
 function createWeb(max) {
   for (let i = 1; i <= max; i++) {
     // loop from 1 to the maximum page of the comic
+
+    getJson(i); // Call function of comic json
+
     app.get(`/${i}/page`, function (req, res) {
       // insert html page
       res.sendFile(path.join(__dirname, "/comicMain.html"));
     });
-
-    // The code for whole comic pages
-    // app.get(`/${i}/info.0.json`, function (req, res) {
-    //   // insert html page
-    //   res.sendFile(path.join(__dirname, `/json/info.${i}.json`));
-    // });
   }
 }
 createWeb(maxPage); // create webpage for comic

@@ -31,26 +31,20 @@ window.onload = async () => {
     window.location.pathname === "/"
       ? 0
       : parseInt(window.location.pathname.match(/(\d+)/)[0]);
-  console.log(comicID);
+
   let successCheck = false;
   setBtn(comicID); // call set button function
 
   // try GET data
   try {
     // request to GET comic data
-    let res = await fetch(`/info.0.json`);
 
     // code if has multiple comic pages from document
-    // let res =
-    //   comicID === 0
-    //     ? await fetch(`/info.0.json`)
-    //     : await fetch(`/${i}/info.0.json`);
+    let res =
+      comicID === 0
+        ? await fetch(`/info.0.json`)
+        : await fetch(`/${comicID}/info.0.json`);
 
-    // if fetch from website
-    // let res =
-    //   comicID === 0
-    //     ? await fetch(`https://xkcd.com/info.0.json`)
-    //     : await fetch(`https://xkcd.com/${comicID}/info.0.json`);
     let dataString = await res.text();
     let data = JSON.parse(dataString); // change it to pure JSON.
 
